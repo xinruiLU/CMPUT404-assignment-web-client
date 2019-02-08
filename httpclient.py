@@ -22,6 +22,7 @@ import sys
 import socket
 import re
 # you may use urllib to encode data appropriately
+#https://docs.python.org/3/library/urllib.parse.html
 import urllib.parse
 from urllib.parse import urlparse
 
@@ -58,7 +59,7 @@ class HTTPClient(object):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.connect((host, port))
         return None
-
+    #https://blog.csdn.net/ydyang1126/article/details/75050175 by Moxiao
     def get_code(self, data):
         data_elements = data.split('\r\n\r\n')
         header = data_elements[0].split('\r\n')
@@ -91,6 +92,11 @@ class HTTPClient(object):
                 done = not part
         return buffer.decode('utf-8')
 
+    #https://github.com/sjpartri/CMPUT404-assignment-web-client/blob/master/httpclient.py
+    #by Sean Partridge sjpartri
+
+    #https://github.com/sam9116/CMPUT404-assignment-web-client/blob/master/httpclient.py
+    #by Sam Bao sam9116
     def send_request(self,request,host,path,encode_url):
 
         if request == "GET":
